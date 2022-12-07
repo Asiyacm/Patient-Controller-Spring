@@ -5,7 +5,9 @@ import com.example.NewPatientApp_backend.dao.PatientDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class PatientController {
@@ -16,10 +18,12 @@ public class PatientController {
 
     @CrossOrigin (origins = "*")
     @PostMapping(path = "/add",consumes = "application/json",produces = "application/json")
-    public String addPatient(@RequestBody Patient p){
+    public Map<String,String> addPatient(@RequestBody Patient p){
         System.out.println(p.getName().toString());
         dao.save(p);
-        return "patient add page";
+        HashMap<String,String> map= new HashMap<>();
+        map.put("status","success");
+        return map;
     }
 
     @CrossOrigin(origins = "*")
