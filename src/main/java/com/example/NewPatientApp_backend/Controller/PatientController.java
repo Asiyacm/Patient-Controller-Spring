@@ -32,6 +32,15 @@ public class PatientController {
     {
         return (List<Patient>)dao.findAll();
     }
+
+    @CrossOrigin (origins = "*")
+    @PostMapping(path = "/search",consumes = "application/json",produces = "application/json")
+    public List<Patient> SearchPatient(@RequestBody Patient p){
+        String name = p.getName();
+        System.out.println(name);
+        return (List<Patient>) dao.SearchPatient(p.getName());
+    }
+
     }
 
 
